@@ -6,6 +6,9 @@ import {
   BrowserRouter as Router,
  Link, Switch, Route
 } from "react-router-dom"
+import background from './images/pexels-greg-2418664.jpg'
+import page from './images/pexels-page.jpg'
+import wood from './images/pexels-wood.jpg'
 
 
 //https://css-tricks.com/snippets/css/a-guide-to-flexbox/#background
@@ -18,18 +21,31 @@ justify-content: center;
 border-style: solid;
 height: 500px;
 width: 1000px;
-margin:auto;
 border-color: green;
 padding: 1%
+background: url(${wood}); 
 
 `
+
+// const Container = styled.div`
+// height:2000px;
+// flex-direction: column;
+// align-items: center;
+// text-align: center;
+//  background: url(${backgroundMountain})no-repeat center fixed; 
+//  background-size: cover;
+
+// `
 
 const FlexParent = styled.div `
 display: flex;
+height:2000px;
 flex-flow: column nowrap;
-justify-content: center;
+justify-content: flex-start;
+align-items: center;
+background: url(${background})no-repeat center fixed; 
+background-size: cover;
 `
-
 const ContentTable = styled.div `
 display: flex;
 flex-flow: column;
@@ -41,19 +57,30 @@ width: 50%;
 border-color: yellow;
 overflow:auto;
 padding: 5px;
+background: url(${page})no-repeat center fixed; 
+background-size: cover;
+opacity: 0.5;
 `
 
 const RulesContainer = styled.div `
 display: flex;
 flex-flow: column;
 border-style: dotted; 
-margin: auto;
+margin: auto; opacity: 0.6;
 height: 80%;
 width: 50%;
 border-color: blue;
 overflow: auto;
+background: url(${page})no-repeat center fixed; 
 
 // `
+
+const Rule = styled.div `
+display: flex;
+padding 10px;
+
+
+`
 // const getRules = async () => await getAll()
 
 
@@ -113,7 +140,7 @@ console.log('chapArray 2', ruleParser('2'))
     return (
      
       <Route path= {"/" + chapter}>
-      <RulesContainer>{ruleParser(chapter).map(rule => <li key = {rule}> {rule}</li>)} </RulesContainer>
+      <RulesContainer>{ruleParser(chapter).map(rule => <Rule key = {rule}> {rule}</Rule>)} </RulesContainer>
       </Route>
 
     )
