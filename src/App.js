@@ -6,79 +6,100 @@ import {
   BrowserRouter as Router,
  Link, Switch, Route
 } from "react-router-dom"
-import background from './images/pexels-greg-2418664.jpg'
+// import background from './images/pexels-greg-2418664.jpg'
 import page from './images/pexels-page.jpg'
 import wood from './images/pexels-wood.jpg'
+// import aurora from './images/pexels-stein-egil-liland-1933316.jpg'
+// import mountain from './images/pexels-mariia-kamenska-756799.jpg'
+// import aurora2 from './images/pexels-benjamin-suter-3617500.jpg'
+import lightning from './images/pexels-raychel-sanner-4870641.jpg'
 
 
 //https://css-tricks.com/snippets/css/a-guide-to-flexbox/#background
-
+const FlexParent = styled.div `
+display: flex;
+height:1000px;
+flex-flow: column nowrap;
+justify-content: flex-start;
+align-items: center;
+background: url(${lightning})no-repeat center fixed; 
+background-size: cover;
+`
 
 const MainContainer = styled.div `
 display: flex;
 flex-flow: row nowrap;
 justify-content: center;
-border-style: solid;
 height: 500px;
-width: 1000px;
-border-color: green;
-padding: 1%
-background: url(${wood}); 
+width: 1100px;
+border-image: url(${wood}) 30 round;
+border: 24px solid rgba(207,195,219,0.3)
+;
+border-radius: 20px 20px 20px 20px;
 
-`
-
-// const Container = styled.div`
-// height:2000px;
-// flex-direction: column;
-// align-items: center;
-// text-align: center;
-//  background: url(${backgroundMountain})no-repeat center fixed; 
-//  background-size: cover;
-
-// `
-
-const FlexParent = styled.div `
-display: flex;
-height:2000px;
-flex-flow: column nowrap;
-justify-content: flex-start;
-align-items: center;
-background: url(${background})no-repeat center fixed; 
-background-size: cover;
 `
 const ContentTable = styled.div `
 display: flex;
 flex-flow: column;
-border-style: dotted;
 justify-content: flex-start;
 margin: auto;
-height:80%;
-width: 50%;
-border-color: yellow;
+height:100%;
+width: 30%;
 overflow:auto;
-padding: 5px;
+padding: 2px;
 background: url(${page})no-repeat center fixed; 
 background-size: cover;
-opacity: 0.5;
+background: rgba(235,213,179,0.60);
+font-family: Avara;
 `
 
 const RulesContainer = styled.div `
 display: flex;
 flex-flow: column;
-border-style: dotted; 
-margin: auto; opacity: 0.6;
-height: 80%;
-width: 50%;
-border-color: blue;
+margin: auto;
+height: 100%;
+width: 70%;
+padding: 2px;
 overflow: auto;
-background: url(${page})no-repeat center fixed; 
+background: rgba(235,213,179, 0.60);
+
+&::-webkit-scrollbar {
+    width: 10px;
+    border: 3px solid black;
+
+}
+
+
+
+
 
 // `
 
 const Rule = styled.div `
 display: flex;
 padding 10px;
+font-family: Alegreya;
 
+
+
+`
+const Chapter = styled.div `
+display: flex;
+padding 10px;
+font-family: Avara;
+font-size: 22px;
+border-style: groove;
+`
+
+const Heading = styled.h1 `
+font-family: Avara;
+font-size: 30px;
+font-weight: bold;
+margin: 15px 0 5px;
+text-align: left;
+color: rgba(150,135,174,255)
+
+;
 
 `
 // const getRules = async () => await getAll()
@@ -154,14 +175,14 @@ console.log('chapArray 2', ruleParser('2'))
   return (
     <Router>
     <FlexParent>
-      <h1>Magic: The Gathering</h1> 
+      <Heading>Magic: The Gathering Rulebook</Heading> 
       <MainContainer>
         <ContentTable>
           <ul>
-        {contentsArray.map(row => <li key = {row + Math.random() }>
+        {contentsArray.map(row => <Chapter key = {row + Math.random() }>
           
           <Link key = {row + Math.random()} to = {row[0] + row[1]+ row[2]}>{row}</Link>
-          </li>)}
+          </Chapter>)}
         </ul>
         </ContentTable>
         <Switch>
@@ -188,3 +209,6 @@ console.log('chapArray 2', ruleParser('2'))
 }
 
 export default App;
+
+//Footer
+//“[Title of your Fan Content] is unofficial Fan Content permitted under the Fan Content Policy. Not approved/endorsed by Wizards. Portions of the materials used are property of Wizards of the Coast. ©Wizards of the Coast LLC.”
