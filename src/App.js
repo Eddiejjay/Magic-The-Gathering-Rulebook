@@ -1,6 +1,6 @@
 
 import styled from 'styled-components';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { getAll } from './RuleService'
 import {
   BrowserRouter as Router,
@@ -69,10 +69,6 @@ background: rgba(235,213,179, 0.60);
 
 }
 
-
-
-
-
 // `
 
 const Rule = styled.div `
@@ -102,13 +98,26 @@ color: rgba(150,135,174,255)
 ;
 
 `
+
+const SearchText = styled.div `
+font-family: Avara;
+font-size: 15px;
+text-align: center;
+
+
+`
 // const getRules = async () => await getAll()
 
 
 const  App = () => {
-  const [txtArray, setTxtArray] = useState ([])
+  // const [txtArray, setTxtArray] = useState ([])
   const [contentsArray, setContentsArray] = useState ([])
   const [rulesArray, setRulesArray] = useState ([])
+  const searchValue = useRef('')
+  const [searchedRulesArray, setSearchedRulesArray] = useState ([])
+
+
+  
   // const [chapter100, setChapter100] = useState ([])
 
   useEffect(() => {  
@@ -116,7 +125,7 @@ const  App = () => {
   .then(response => {
     const array = response.split("\n")
     // console.log('Koko tiedosto taulukkona', array)
-    setTxtArray(array)
+    // setTxtArray(array)
     const cArray = array.slice(10,161)
     setContentsArray(cArray)
     const rulArray = array.slice(169,5757)
@@ -126,8 +135,9 @@ const  App = () => {
   })
 }, [])
 
-console.log('txtArray', txtArray)
-console.log('contents array', contentsArray)
+
+// console.log('txtArray', txtArray[1])
+// console.log('contents array', contentsArray)
 // console.log('contents lenght ', contentsArray.length)
 // console.log('rules arra', rulesArray)
 
@@ -135,16 +145,37 @@ console.log('contents array', contentsArray)
     // setContentsArray(cArray)
     // console.log('txtARRAY = ', txtArray)
     // console.log('contentsArra 9', contentsArray)
+  
+    
    
+const searchClicked = (event) => {
+  event.preventDefault()
+  console.log('searchValue ', searchValue)
+  let searchedRules = rulesArray.filter(rule => rule.includes(searchValue.current))
+  console.log('Searcherd rules', searchedRules)
+  setSearchedRulesArray(searchedRules)
+
+}
+
+const clearSearch = () => {
+setSearchedRulesArray([])
+searchValue.current = ''
+document.getElementById('searchInput').value=''
+
+}
+
+
+
 
 const ruleParser = (chapter) => {
+  console.log('ParserCalled')
 let chapArray = []
 for (let i = 0; i < rulesArray.length ; i++) {
    let alkio = rulesArray[i]
   //  let alkioneka = alkio[0]
    let alkion3ekaa = alkio[0] + alkio[1] + alkio[2]
   if (alkion3ekaa === chapter) {
-    console.log(rulesArray[i])
+    // console.log(rulesArray[i])
     chapArray.push(rulesArray[i])
   }
 }
@@ -152,25 +183,24 @@ for (let i = 0; i < rulesArray.length ; i++) {
 return chapArray
 }
 
-console.log('chapArray 2', ruleParser('2'))
+// console.log('chapArray 2', ruleParser('2'))
   //  console.log('alkion eka  ', alkion3ekaa)
   //  console.log('typeofAlkuibeia', typeof(alkion3ekaa))
 
   const pathMaker = (chapter) => {
 
+if(searchValue.current !== '') {
+  return (
+  <RulesContainer><SearchText>Search result for {searchValue.current}</SearchText> {searchedRulesArray.map(rule => <Rule key = {rule}> {rule}</Rule>)}</RulesContainer>)
+  
+}else{
     return (
-     
       <Route path= {"/" + chapter}>
       <RulesContainer>{ruleParser(chapter).map(rule => <Rule key = {rule}> {rule}</Rule>)} </RulesContainer>
       </Route>
-
     )
-   
-
   }
-
-
-
+}
 
   return (
     <Router>
@@ -181,26 +211,21 @@ console.log('chapArray 2', ruleParser('2'))
           <ul>
         {contentsArray.map(row => <Chapter key = {row + Math.random() }>
           
-          <Link key = {row + Math.random()} to = {row[0] + row[1]+ row[2]}>{row}</Link>
+          <Link onClick = {clearSearch} key = {row + Math.random()} to = {row[0] + row[1]+ row[2]}>{row}</Link>
           </Chapter>)}
         </ul>
         </ContentTable>
         <Switch>
-
         {contentsArray.map(chapter => pathMaker(chapter[0]+chapter[1]+chapter[2]))}
-
-{/* 
-        <Route path="/100">
-        <RulesContainer>{ruleParser("100").map(rule => <li key = {rule}> {rule}</li>)} </RulesContainer>
-        </Route>
-
-
-        <Route path="/200">
-        </Route>
-        <Route path="300"> 
-         </Route> */}
+        {/* <Route path = {"/search/" + searchValue}>
+        <RulesContainer>{searchedRulesArray.map(rule => <Rule key = {rule}> {rule}</Rule>)}</RulesContainer>
+        </Route> */}
       </Switch>
+      
       </MainContainer>
+      <button onClick ={searchClicked}>Search</button>
+      <input id = 'searchInput' name = 'searchInput' onChange = {(event) => searchValue.current = (event.target.value)}></input>
+    
     </FlexParent>
     
   
