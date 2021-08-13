@@ -3,8 +3,8 @@ import lightning from './images/pexels-raychel-sanner-4870641.jpg'
 
 export const StyledInput = styled.input`
 
-padding:6px;
-font-size: 25px;
+max-padding:6px;
+max-font-size: 25px;
 font-family: Avara;
 border-width: 0px;
 box-shadow: 0px 0px 5px rgba(66,66,66,.75);
@@ -17,7 +17,7 @@ box-shadow: 0px 0px 5px rgba(66,66,66,.75);
 
   `
 
-  export const StyledButton = styled.button `
+export const StyledButton = styled.button `
 padding:5x;
 background: transparent;
 border: 5px groove rgba(20,20,20,0.17);
@@ -27,7 +27,7 @@ border: 5px groove rgba(20,20,20,0.17);
 }
 `
 export const ButtonText = styled.div `
-  padding: 5px;
+  max-padding: 5px;
   color: #766a95;;
   font-family: Avara;
   font-size: 25px;
@@ -38,7 +38,7 @@ export const SearchFieldContainer = styled.div`
 display: flex;
 flex-flow: row;
 justify-content: center;
-padding : 5px;
+padding : 7px;
 
 `
 
@@ -57,7 +57,7 @@ display: flex;
 flex-flow: row nowrap;
 justify-content: center;
 height: 500px;
-width: 1100px;
+max-width: 1100px;
 border: 24px solid rgba(207,195,219,0.3)
 ;
 border-radius: 20px 20px 20px 20px;
@@ -71,7 +71,7 @@ margin: auto;
 height:100%;
 width: 30%;
 overflow:auto;
-padding: 2px;
+padding: 7px;
 background-size: cover;
 background: rgba(235,213,179,0.60);
 font-family: Avara;
@@ -96,7 +96,7 @@ flex-flow: column;
 margin: auto;
 height: 100%;
 width: 70%;
-padding: 2px;
+padding: 5px;
 overflow: auto;
 background: rgba(235,213,179, 0.60);
 
@@ -118,6 +118,7 @@ background: rgba(235,213,179, 0.60);
 export const Rule = styled.div `
 display: flex;
 padding 10px;
+max-font-size: 20px;
 font-family: Alegreya;
 
 
@@ -125,15 +126,15 @@ font-family: Alegreya;
 `
 export const Chapter = styled.div `
 display: flex;
-padding 10px;
+padding 7px;
 font-family: Avara;
-font-size: 22px;
+max-font-size: 22px;
 border-style: groove;
 `
 
 export const Heading = styled.h1 `
 font-family: Avara;
-font-size: 30px;
+max-font-size: 35px;
 font-weight: bold;
 margin: 15px 0 5px;
 text-align: left;
@@ -151,6 +152,14 @@ text-align: center;
 `
 export const InfoText = styled.div `
 font-family: Avara;
-font-size: 25px;
+max-font-size: 25px;
 text-align: center;
+justify-content: center;
+`
+
+export const ContentsHeader = styled.div `
+font-Family: Avara;
+max-font-size: 25px;
+text-align: center;
+
 `
