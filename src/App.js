@@ -29,8 +29,7 @@ const  App = () => {
   }, [])
 
 
-  const searchClicked = (event) => {
-    event.preventDefault()
+  const searchClicked = () => {
     console.log('searchValue ', searchValue)
     let searchedRules = rulesArray.filter(rule => rule.includes(searchValue.current))
     console.log('Searcherd rules', searchedRules)
@@ -44,12 +43,19 @@ const  App = () => {
 
   }
 
+  const handleKeypress = event => {
+
+    if (event.key === 'Enter') {
+      searchClicked()
+    }
+  }
+
   return (
     <Router>
       <FlexParent>
         <Heading>Magic: The Gathering Rulebook</Heading>
         <SearchFieldContainer>
-          <StyledInput id = 'searchInput' name = 'searchInput' onChange = {(event) => searchValue.current = (event.target.value)}></StyledInput>
+          <StyledInput onKeyPress={handleKeypress} id = 'searchInput' name = 'searchInput' onChange = {(event) => searchValue.current = (event.target.value)}></StyledInput>
           <StyledButton onClick ={searchClicked}><ButtonText>Search</ButtonText></StyledButton>
         </SearchFieldContainer>
         <MainContainer>

@@ -69,7 +69,7 @@ flex-flow: column;
 justify-content: flex-start;
 margin: auto;
 height:100%;
-width: 30%;
+max-width: 40%;
 overflow:auto;
 padding: 7px;
 background-size: cover;
@@ -96,7 +96,7 @@ flex-flow: column;
 margin: auto;
 height: 100%;
 width: 70%;
-padding: 5px;
+padding: 0px;
 overflow: auto;
 background: rgba(235,213,179, 0.60);
 
@@ -126,10 +126,13 @@ font-family: Alegreya;
 `
 export const Chapter = styled.div `
 display: flex;
+flex-direction: column;
+flex-wrap: wrap;
 padding 7px;
 font-family: Avara;
-max-font-size: 22px;
+max-font-size: 20px;
 border-style: groove;
+overflow: no;
 `
 
 export const Heading = styled.h1 `
