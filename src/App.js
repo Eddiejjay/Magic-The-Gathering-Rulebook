@@ -30,10 +30,9 @@ const  App = () => {
 
 
   const searchClicked = () => {
-    console.log('searchValue ', searchValue)
-    let searchedRules = rulesArray.filter(rule => rule.includes(searchValue.current))
-    console.log('Searcherd rules', searchedRules)
+    let searchedRules = rulesArray.filter(rule => rule.toLowerCase().includes(searchValue.current.toLowerCase().trim()))
     setSearchedRulesArray(searchedRules)
+    document.getElementById('searchInput').value=''
   }
 
   const clearSearch = () => {

@@ -57,7 +57,7 @@ display: flex;
 flex-flow: row nowrap;
 justify-content: center;
 height: 500px;
-max-width: 1100px;
+max-width: 1000x;
 border: 24px solid rgba(207,195,219,0.3)
 ;
 border-radius: 20px 20px 20px 20px;
@@ -69,9 +69,9 @@ flex-flow: column;
 justify-content: flex-start;
 margin: auto;
 height:100%;
-max-width: 40%;
+max-width: 35%;
 overflow:auto;
-padding: 7px;
+padding: 5px;
 background-size: cover;
 background: rgba(235,213,179,0.60);
 font-family: Avara;
@@ -96,7 +96,7 @@ flex-flow: column;
 margin: auto;
 height: 100%;
 width: 70%;
-padding: 0px;
+padding: 5px;
 overflow: auto;
 background: rgba(235,213,179, 0.60);
 
@@ -120,19 +120,18 @@ display: flex;
 padding 10px;
 max-font-size: 20px;
 font-family: Alegreya;
+overflow-wrap: anywhere;
 
 
 
 `
 export const Chapter = styled.div `
 display: flex;
-flex-direction: column;
-flex-wrap: wrap;
 padding 7px;
 font-family: Avara;
-max-font-size: 20px;
+max-font-size: 22px;
 border-style: groove;
-overflow: no;
+overflow-wrap: anywhere;
 `
 
 export const Heading = styled.h1 `

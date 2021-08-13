@@ -6,7 +6,7 @@ import { Route } from 'react-router-dom'
 export const pathMaker = (chapter, searchValue, searchedRulesArray, rulesArray) => {
   if(searchValue.current !== '') {
     return (
-      <RulesContainer><SearchText>Search result for {searchValue.current}</SearchText> {searchedRulesArray.map(rule => <Rule key = {rule + Math.random()}> {rule}</Rule>)}</RulesContainer>)
+      <RulesContainer key={Math.random()}><SearchText>{searchedRulesArray.length} search result for {searchValue.current}</SearchText> {searchedRulesArray.map(rule => <Rule key = {rule + Math.random()}> {rule}</Rule>)}</RulesContainer>)
 
   }else{
     return (
