@@ -7,13 +7,15 @@ import {
 import { StyledInput, StyledButton, SearchFieldContainer, ButtonText, FlexParent,
   MainContainer, RulesContainer,InfoText, ContentTable,
   Chapter, Heading, ContentsHeader } from './StyledComponents'
-import {  pathMaker } from './Tools'
+import {  routeMaker, matchExtractor } from './Tools'
 
 const  App = () => {
   const [contentsArray, setContentsArray] = useState ([])
   const [rulesArray, setRulesArray] = useState ([])
   const searchValue = useRef('')
   const [searchedRulesArray, setSearchedRulesArray] = useState ([])
+  const [ruleNumbers, setRuleNumbers] = useState ([])
+  // const [ruleNumberRoutes, setRuleNumberRoutes] = useState ([])
 
   useEffect(() => {
     getAll()
@@ -25,7 +27,15 @@ const  App = () => {
         setContentsArray(cArray)
         const rulArray = array.slice(169,5757)
         setRulesArray(rulArray)
+        let matchArray = rulArray.map( rule => matchExtractor(rule)[1])
+        matchArray = matchArray.filter(match => match !== undefined)
+        setRuleNumbers(matchArray)
+        ruleNumbers
+        // let ruleNRoutes = []
+        // ruleNumbers.map(number => ruleNRoutes.push(ruleNumberRouteMaker(number, rulesArray)))
+        // setRuleNumberRoutes(ruleNRoutes)
       })
+
   }, [])
 
 
@@ -65,7 +75,8 @@ const  App = () => {
             </Chapter>)}
           </ContentTable>
           <Switch>
-            {contentsArray.map(chapter => pathMaker(chapter[0]+chapter[1]+chapter[2], searchValue, searchedRulesArray, rulesArray))}
+            {contentsArray.map(chapter => routeMaker(chapter[0]+chapter[1]+chapter[2], searchValue, searchedRulesArray, rulesArray))}
+            {/* {ruleNumbers.map(number => ruleNumberRouteMaker(number, rulesArray))} */}
             <Route path= "/" >
               <RulesContainer style = {{ justifyContent: 'center' }}><InfoText > Choose a chapter of rules or search by a keword </InfoText></RulesContainer>
             </Route>

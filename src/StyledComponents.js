@@ -93,6 +93,7 @@ font-family: Avara;
 export const RulesContainer = styled.div `
 display: flex;
 flex-flow: column;
+align-items: flex-center;
 margin: auto;
 height: 100%;
 width: 70%;
@@ -116,12 +117,9 @@ background: rgba(235,213,179, 0.60);
 // `
 
 export const Rule = styled.div `
-display: flex;
 padding 10px;
 max-font-size: 20px;
 font-family: Alegreya;
-overflow-wrap: anywhere;
-
 
 
 `
