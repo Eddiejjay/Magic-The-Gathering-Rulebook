@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-undef
 import React, { useState, useEffect, useRef } from 'react'
 import { getAll } from './RuleService'
 import {
@@ -21,14 +22,14 @@ const  App = () => {
     getAll()
       .then(response => {
         const array = response.split('\n')
-        let cArray = array.slice(10,161)
-        cArray = cArray.filter(content => content.length > 2)
-        cArray = cArray.slice(2,cArray.length)
+        const cArray = array.slice(10,161)
+          .filter(content => content.length > 2)
+          .slice(2,151)
         setContentsArray(cArray)
         const rulArray = array.slice(169,5757)
         setRulesArray(rulArray)
-        let matchArray = rulArray.map( rule => matchExtractor(rule)[1])
-        matchArray = matchArray.filter(match => match !== undefined)
+        const matchArray = rulArray.map( rule => matchExtractor(rule)[1])
+          .filter(match => match !== undefined)
         setRuleNumbers(matchArray)
         ruleNumbers
         // let ruleNRoutes = []

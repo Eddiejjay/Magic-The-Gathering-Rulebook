@@ -1,7 +1,12 @@
+/* eslint-disable no-undef */
 import axios from 'axios'
 
-const corsProxy= 'https://young-island-54491.herokuapp.com'
-const url = `${corsProxy}/https://media.wizards.com/2021/downloads/MagicCompRules%2020210419.txt`
+
+
+const CORSPROXY = process.env.REACT_APP_CORSPROXY
+const RULESURL = process.env.REACT_APP_RULESURL
+const url = `${CORSPROXY}/${RULESURL}`
+
 export const getAll = async () => {
   const response = await axios.get(url)
   return response.data

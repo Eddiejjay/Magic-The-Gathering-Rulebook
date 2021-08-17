@@ -18,6 +18,7 @@ export const routeMaker = (chapter, searchValue, searchedRulesArray, rulesArray)
     )
   }
 }
+
 export const ruleParser = (chapter, rulesArray) => {
   let chapArray = []
   for (let i = 0; i < rulesArray.length ; i++) {
@@ -40,10 +41,8 @@ export const ruleParser2 = (number, rulesArray) => {
       chapArray.push(rulesArray[i])
     }
   }
-
   return chapArray
 }
-
 
 
 export const hyperLinkCreator = (rule) => {
@@ -57,8 +56,6 @@ export const hyperLinkCreator = (rule) => {
         switch (index) {
         case 0: return match
         default: return <Link key = {match + Math.random()}to = {'/'+ match}> {match} </Link>
-
-
         }
       },
       input: rule
