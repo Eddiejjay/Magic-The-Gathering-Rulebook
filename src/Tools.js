@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import React from 'react'
 import { RulesContainer, SearchText, Rule } from './StyledComponents'
 import { Route, Link } from 'react-router-dom'
@@ -13,35 +14,22 @@ export const routeMaker = (chapter, searchValue, searchedRulesArray, rulesArray)
   }else{
     return (
       <Route key = {Math.random()} path= {'/' + chapter}>
-        <RulesContainer>{ruleParser(chapter, rulesArray).map(rule => <Rule key = {rule + Math.random()}>{hyperLinkCreator(rule)}</Rule>)} </RulesContainer>
+        <RulesContainer>{ruleParser(chapter, rulesArray,3).map(rule => <Rule key = {rule + Math.random()}>{hyperLinkCreator(rule)}</Rule>)} </RulesContainer>
       </Route>
     )
   }
 }
 
-export const ruleParser = (chapter, rulesArray) => {
-  let chapArray = []
+export const ruleParser = (matcher, rulesArray, n) => {
+  let array = []
   for (let i = 0; i < rulesArray.length ; i++) {
-    let alkio = rulesArray[i]
-    let alkion3ekaa = alkio[0] + alkio[1] + alkio[2]
-    if (alkion3ekaa === chapter) {
-      chapArray.push(rulesArray[i])
+    let firstNumbers = rulesArray[i].slice(0,n)
+    if (firstNumbers === matcher) {
+      array.push(rulesArray[i])
     }
   }
 
-  return chapArray
-}
-
-export const ruleParser2 = (number, rulesArray) => {
-  let chapArray = []
-  for (let i = 0; i < rulesArray.length ; i++) {
-    let alkio = rulesArray[i]
-    let alkion6ekaa = alkio[0] + alkio[1] + alkio[2] + alkio[3]+ alkio[4]+ alkio[5]
-    if (alkion6ekaa === number) {
-      chapArray.push(rulesArray[i])
-    }
-  }
-  return chapArray
+  return array
 }
 
 
@@ -51,7 +39,6 @@ export const hyperLinkCreator = (rule) => {
   return (
     regexifyString ({
       pattern: m,
-      // eslint-disable-next-line react/display-name
       decorator: (match, index ) => {
         switch (index) {
         case 0: return match
@@ -86,7 +73,9 @@ export const matchExtractor = (rule) => {
 export const ruleNumberRouteMaker = (number, rulesArray) => {
   return (
     <Route name = {Math.random()} id = {Math.random()} key = {Math.random()} path= {'/' + number}>
-      <RulesContainer>{ruleParser2(number, rulesArray).map(rule => <Rule key = {rule + Math.random()}>{hyperLinkCreator(rule)}</Rule>)} </RulesContainer>
+      <RulesContainer>{ruleParser(number, rulesArray, 6).map(rule => <Rule key = {rule + Math.random()}>{hyperLinkCreator(rule)}</Rule>)} </RulesContainer>
     </Route>
   )
 }
+
+export const sum = (a,b) => a+b
