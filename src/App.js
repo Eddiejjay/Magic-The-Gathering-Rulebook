@@ -16,6 +16,7 @@ const  App = () => {
   const searchValue = useRef('')
   const [searchedRulesArray, setSearchedRulesArray] = useState ([])
   const [ruleNumbers, setRuleNumbers] = useState ([])
+  // const [chapter, setChapter] = useState ('')
   // const [ruleNumberRoutes, setRuleNumberRoutes] = useState ([])
 
   useEffect(() => {
@@ -46,8 +47,10 @@ const  App = () => {
     document.getElementById('searchInput').value=''
   }
 
-  const clearSearch = () => {
+  const clearSearch = (chap) => {
+    console.log('chapter ', chap)   // Liittyy yritykseen luoda route linkin painamisen jälkeen
     setSearchedRulesArray([])
+    // setChapter(chap)
     searchValue.current = ''
     document.getElementById('searchInput').value=''
 
@@ -72,12 +75,13 @@ const  App = () => {
           <ContentTable>
             <ContentsHeader>Contents</ContentsHeader>
             {contentsArray.map(row => <Chapter key = {row + Math.random()}>
-              <Link key = {row + Math.random()} onClick = {clearSearch} to = {row[0] + row[1]+ row[2]}>{row}</Link>
+              <Link key = {row + Math.random()} onClick = {() => clearSearch(row.slice(0,3))} to = {row.slice(0,3)}>{row}</Link>
             </Chapter>)}
           </ContentTable>
           <Switch>
-            {contentsArray.map(chapter => routeMaker(chapter[0]+chapter[1]+chapter[2], searchValue, searchedRulesArray, rulesArray))}
-            {/* {ruleNumbers.map(number => ruleNumberRouteMaker(number, rulesArray))} */}
+            {/*Tavoitteena luoda route linkin painamisen jälkeen, jotta nopeutuisi {chapter!==''?<Route  path= {'/' + chapter}></Route>:<Route  path= {'/' + chapter}></Route> } */ }
+            {contentsArray.map(chapter => routeMaker(chapter.slice(0,3), searchValue, searchedRulesArray, rulesArray))}
+            {/*Tällä koodilla toimii mutta, todella hidas {ruleNumbers.map(number => ruleNumberRouteMaker(number, rulesArray))} */}
             <Route path= "/" >
               <RulesContainer style = {{ justifyContent: 'center' }}><InfoText > Choose a chapter of rules or search by a keword </InfoText></RulesContainer>
             </Route>
