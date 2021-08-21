@@ -14,10 +14,10 @@ code {
 
 @font-face {
   font-family: 'Avara';
-  src: local('Avara'), url(./fonts/Avara.otf) format('truetype');
+  src: local('Avara'), url(./artsy/fonts/Avara.otf) format('truetype');
 } 
 
 @font-face {
   font-family: 'Alegreya';
-  src: local('Alegreya'), url(./fonts/Alegreya-Regular.otf) format('truetype');
+  src: local('Alegreya'), url(./artsy/fonts/Alegreya-Regular.otf) format('truetype');
 } 
