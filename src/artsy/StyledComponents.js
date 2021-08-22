@@ -103,6 +103,7 @@ width: 70%;
 padding: 5px;
 overflow: auto;
 background: rgba(235,213,179, 0.60);
+overflow-wrap: anywhere;
 
 &::-webkit-scrollbar {
     width: 20px;
