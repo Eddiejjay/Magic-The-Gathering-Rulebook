@@ -8,7 +8,6 @@ const url = `${CORSPROXY}/${RULESURL}`
 
 export const getAll = async () => {
   const response = await axios.get(url)
-  console.log('url'. url )
   return response.data
 }
 
