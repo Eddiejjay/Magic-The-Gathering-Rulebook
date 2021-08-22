@@ -16,7 +16,7 @@ export const ruleParser = (matcher, rulesArray, n) => {
 
 export const hyperLinkCreator = (rule) => {
   // eslint-disable-next-line no-useless-escape
-  let m = /([1-9][0-9][0-9]\.?[0-9]?[0-9]?[0-9][a-z|\.])/g
+  let m = /([1-9][0-9][0-9]\.?[0-9]?[0-9]?[0-9][a-z|\.|0-9])/g
   return (
     regexifyString ({
       pattern: m,

@@ -6,7 +6,7 @@ import { hyperLinkCreator } from '../utils/Tools'
 
 const SingleRule = ({ rulesArray }) => {
   const ruleNumber = useParams().rule
-  const rule = rulesArray.find(rule => rule.slice(0,6) === ruleNumber)
+  const rule = rulesArray.find(rule => rule.slice(0,ruleNumber.length) === ruleNumber)
   return (
     <RulesContainer><Rule>{hyperLinkCreator(rule)}</Rule> </RulesContainer>
   )
