@@ -4,7 +4,6 @@ import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 
 const SearchForm = ({ setSearchedRulesArray, rulesArray, setSearchValue }) => {
-
   const history = useHistory()
   const [inputText, setInputText] = useState ('')
 

@@ -31,5 +31,3 @@ export const hyperLinkCreator = (rule) => {
   )
 
 }
-
-export const sum = (a,b) => a+b

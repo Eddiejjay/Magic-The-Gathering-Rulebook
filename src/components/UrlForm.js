@@ -3,7 +3,6 @@ import { StyledInput, StyledButton, SearchFieldContainer, InfoText
 import React, { useState } from 'react'
 
 const UrlForm = ({ setAlternativeUrl }) => {
-
   const [inputText, setInputText] = useState ('')
   const [show, setShow] = useState (false)
 
